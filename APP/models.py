@@ -14,7 +14,7 @@ class family(models.Model):
         return self.Farmer
 
 class child(models.Model):
-    Parent=models.ForeignKey(family,on_delete=models.CASCADE)
+    Parent=models.ForeignKey(family,on_delete=models.CASCADE,related_name="Parent")
     child_name=models.CharField(max_length=100 , default="XYZ")
     
     def __str__(self):

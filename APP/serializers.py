@@ -6,18 +6,12 @@ class FamilySerializer(serializers.ModelSerializer):
     class Meta:
         model = family
         fields = '__all__'
-        validators = [
-            UniqueTogetherValidator(
-                queryset=family.objects.all(),
-                fields = ['Farmer']
-            )
-        ]
 
 class ChildSerializer(serializers.ModelSerializer):
-    Parent=FamilySerializer()
+    Parent=FamilySerializer(read_only=True)
     class Meta:
         model = child
-        fields = '__all__'     
+        fields = ['child_name','Parent']     
         
 class CowSerializer(serializers.ModelSerializer):
     Parent=FamilySerializer()
