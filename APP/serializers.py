@@ -2,37 +2,37 @@ from APP.models import *
 from rest_framework.validators import UniqueTogetherValidator
 from rest_framework import serializers
 
-class FamilySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = family
-        fields = '__all__'
-
 class ChildSerializer(serializers.ModelSerializer):
-    Parent=FamilySerializer(read_only=True)
     class Meta:
         model = child
-        fields = ['child_name','Parent']     
+        fields = ['child_name']     
         
 class CowSerializer(serializers.ModelSerializer):
-    Parent=FamilySerializer()
     class Meta:
         model = cow
-        fields = '__all__'
-        validators = [
-            UniqueTogetherValidator(
-                queryset=cow.objects.all(),
-                fields = ['cow_name']
-            )
-        ]
+        fields = ['cow_name']
 
 class SheapSerializer(serializers.ModelSerializer):
-    Parent=FamilySerializer()
     class Meta:
         model = sheap
-        fields = '__all__'
+        fields = ['sheap_name']
 
 class GoatSerializer(serializers.ModelSerializer):
-    Parent=FamilySerializer()
     class Meta:
         model = goat
-        fields = '__all__'
+        fields = ['goat_name']
+
+class FamilySerializer(serializers.ModelSerializer):
+    child_names=ChildSerializer()
+    cow_names=CowSerializer()
+    sheap_names=SheapSerializer()
+    goat_names=GoatSerializer()
+    class Meta:
+        model = family
+        fields = ['Farmer','Wife','children','child_names','cows','cow_names','sheaps','sheap_names','goats','goat_names']
+        validators = [
+            UniqueTogetherValidator(
+                queryset=family.objects.all(),
+                fields=['Farmer']
+            )
+        ]

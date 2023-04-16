@@ -2,43 +2,43 @@ from django.db import models
 
 # Create your models here.
 
+class child(models.Model):
+    child_name=models.CharField(max_length=100 , default="XYZ")
+    
+    def __str__(self):
+        return self.child_name
+    
+class cow(models.Model):
+    cow_name=models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.cow_name
+
+class sheap(models.Model):
+    sheap_name=models.CharField(max_length=100,null=True,blank=True)
+    
+    def __str__(self):
+        return self.sheap_name
+
+class goat(models.Model):
+    goat_name=models.CharField(max_length=100,null=True,blank=True)
+    
+    def __str__(self):
+        return self.goat_name
+
 class family(models.Model):
     Farmer=models.CharField(max_length=100)
     Wife=models.CharField(max_length=100)
     children=models.IntegerField(null=True,blank=True)
+    child_names=models.ForeignKey(child,null=True,blank=True,related_name="child_names",on_delete=models.CASCADE)
     cows=models.IntegerField(default=3)
+    cow_names=models.ForeignKey(cow,null=True,blank=True,related_name="cow_names",on_delete=models.CASCADE)
     sheaps=models.IntegerField(null=True,blank=True)
+    sheap_names=models.ForeignKey(sheap,null=True,blank=True,related_name="sheap_names",on_delete=models.CASCADE)
     goats=models.IntegerField(null=True,blank=True)
+    goat_names=models.ForeignKey(goat,null=True,blank=True,related_name="goat_names",on_delete=models.CASCADE)
     
     def __str__(self):
         return self.Farmer
-
-class child(models.Model):
-    Parent=models.ForeignKey(family,on_delete=models.CASCADE,related_name="Parent")
-    child_name=models.CharField(max_length=100 , default="XYZ")
-    
-    def __str__(self):
-        return self.child_name+"\tof\tfather\t"+self.Parent.Farmer
-    
-class cow(models.Model):
-    farmer=models.ForeignKey(family,on_delete=models.CASCADE)
-    cow_name=models.CharField(max_length=100)
-    
-    def __str__(self):
-        return self.cow_name+"\tof\tfarmer\t"+self.farmer.Farmer
-
-class sheap(models.Model):
-    farmer=models.ForeignKey(family,on_delete=models.CASCADE)
-    sheap_name=models.CharField(max_length=100,null=True,blank=True)
-    
-    def __str__(self):
-        return self.sheap_name+"\tof\tfarmer\t"+self.farmer.Farmer
-
-class goat(models.Model):
-    farmer=models.ForeignKey(family,on_delete=models.CASCADE)
-    goat_name=models.CharField(max_length=100,null=True,blank=True)
-    
-    def __str__(self):
-        return self.goat_name+"\tof\tfarmer\t"+self.farmer.Farmer
 
     

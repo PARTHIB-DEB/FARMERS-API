@@ -2,7 +2,6 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from APP.serializers import *
 from APP.models import *
-
 # Create your views here.
 
 # CLASS BAES VIEW --- APIVIEW
