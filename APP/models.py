@@ -3,13 +3,13 @@ from django.db import models
 # Create your models here.
 
 class child(models.Model):
-    child_name=models.CharField(max_length=100 , default="XYZ")
+    child_name=models.CharField(max_length=100,null=True,blank=True)
     
     def __str__(self):
         return self.child_name
     
 class cow(models.Model):
-    cow_name=models.CharField(max_length=100)
+    cow_name=models.CharField(max_length=100,null=True,blank=True)
     
     def __str__(self):
         return self.cow_name
@@ -31,7 +31,7 @@ class family(models.Model):
     Wife=models.CharField(max_length=100)
     children=models.IntegerField(null=True,blank=True)
     child_names=models.ForeignKey(child,null=True,blank=True,related_name="child_names",on_delete=models.CASCADE)
-    cows=models.IntegerField(default=3)
+    cows=models.IntegerField(null=True,blank=True)
     cow_names=models.ForeignKey(cow,null=True,blank=True,related_name="cow_names",on_delete=models.CASCADE)
     sheaps=models.IntegerField(null=True,blank=True)
     sheap_names=models.ForeignKey(sheap,null=True,blank=True,related_name="sheap_names",on_delete=models.CASCADE)
