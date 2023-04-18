@@ -6,7 +6,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework import generics
 
 
-# CLASS BAES VIEW --- APIVIEW (APIViewset , ModelViewset)
+# CLASS BAES VIEW --- APIVIEW (APIViewset , ModelViewset (along with Listviewset for nested search))
 # FUNCTION BASED VIEW --- @apiview
 
 # Writing Listview for Normal view
@@ -56,8 +56,6 @@ class familylist(APIView):
             obj.delete()
             return Response({"Message":f"ALL FAMILIES ARE DELETED!!!!"})
 
-
-# Views For Parent Model ('Family')
 
 class childlist(APIView):
     def get(self,request):
@@ -243,8 +241,8 @@ class goatlist(APIView):
             return Response({"Message":f"ALL GOATS ARE DELETED!!!!"})
 
 
-
-
+# Classes for Nested queryset generation (help for searching child objects under parent objects)
+ 
 class childlistset(generics.ListAPIView):
     serializer_class=ChildSerializer
     
