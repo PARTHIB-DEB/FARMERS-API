@@ -291,58 +291,65 @@ class familyviewset(ModelViewSet):
     
     def list(self, request):
         search=request.GET['search']
-        queryset=family.objects.filter(Farmer__startswith=search).all()
-        serializer=FamilySerializer(queryset,many=True)
-        if serializer.data!=[]:
-            return Response({"Data":serializer.data})
-        else:
-            queryset=family.objects.filter(Wife__startswith=search).all()
+        if search !="":
+            queryset=family.objects.filter(Farmer__startswith=search).all()
             serializer=FamilySerializer(queryset,many=True)
             if serializer.data!=[]:
                 return Response({"Data":serializer.data})
             else:
-                queryset=family.objects.filter(children__startswith=search).all()
+                queryset=family.objects.filter(Wife__startswith=search).all()
                 serializer=FamilySerializer(queryset,many=True)
                 if serializer.data!=[]:
                     return Response({"Data":serializer.data})
                 else:
-                    queryset=childlistset.get_queryset(self)
-                    serializer=ChildSerializer(queryset,many=True)
+                    queryset=family.objects.filter(children__startswith=search).all()
+                    serializer=FamilySerializer(queryset,many=True)
                     if serializer.data!=[]:
                         return Response({"Data":serializer.data})
                     else:
-                        queryset=family.objects.filter(cows__startswith=search).all()
-                        serializer=FamilySerializer(queryset,many=True)
+                        queryset=childlistset.get_queryset(self)
+                        serializer=ChildSerializer(queryset,many=True)
                         if serializer.data!=[]:
                             return Response({"Data":serializer.data})
                         else:
-                            queryset=cowlistset.get_queryset(self)
-                            serializer=CowSerializer(queryset,many=True)
+                            queryset=family.objects.filter(cows__startswith=search).all()
+                            serializer=FamilySerializer(queryset,many=True)
                             if serializer.data!=[]:
                                 return Response({"Data":serializer.data})
                             else:
-                                queryset=family.objects.filter(sheaps__startswith=search).all()
-                                serializer=FamilySerializer(queryset,many=True)
+                                queryset=cowlistset.get_queryset(self)
+                                serializer=CowSerializer(queryset,many=True)
                                 if serializer.data!=[]:
                                     return Response({"Data":serializer.data})
                                 else:
-                                    queryset=sheaplistset.get_queryset(self)
-                                    serializer=SheapSerializer(queryset,many=True)
+                                    queryset=family.objects.filter(sheaps__startswith=search).all()
+                                    serializer=FamilySerializer(queryset,many=True)
                                     if serializer.data!=[]:
                                         return Response({"Data":serializer.data})
                                     else:
-                                        queryset=family.objects.filter(goats__startswith=search).all()
-                                        serializer=FamilySerializer(queryset,many=True)
+                                        queryset=sheaplistset.get_queryset(self)
+                                        serializer=SheapSerializer(queryset,many=True)
                                         if serializer.data!=[]:
                                             return Response({"Data":serializer.data})
                                         else:
-                                            queryset=goatlistset.get_queryset(self)
-                                            serializer=GoatSerializer(queryset,many=True)
+                                            queryset=family.objects.filter(goats__startswith=search).all()
+                                            serializer=FamilySerializer(queryset,many=True)
                                             if serializer.data!=[]:
                                                 return Response({"Data":serializer.data})
                                             else:
-                                                return Response({"Data":"Not Found"})
-
+                                                queryset=goatlistset.get_queryset(self)
+                                                serializer=GoatSerializer(queryset,many=True)
+                                                if serializer.data!=[]:
+                                                    return Response({"Data":serializer.data})
+                                                else:
+                                                    return Response({"Data":"Not Found"})
+        
+        else:
+            family_datas=FamilySerializer(family.objects.all(),many=True)
+            return Response(family_datas.data)
+            
+    
+        
 class childviewset(ModelViewSet):
     serializer_class=ChildSerializer
     queryset=child.objects.all()

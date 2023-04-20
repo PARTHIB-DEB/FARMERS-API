@@ -36,3 +36,16 @@ class FamilySerializer(serializers.ModelSerializer):
                 fields=['Farmer']
             )
         ]
+    
+    def create(self, validated_data):
+        family_object = family.objects.create(**validated_data)
+        child_data = validated_data.pop('child_names')
+        child.objects.create(family_object=family_object, **child_data)
+        cow_data = validated_data.pop('cow_names')
+        cow.objects.create(family_object=family_object, **cow_data)
+        sheap_data = validated_data.pop('sheap_names')
+        sheap.objects.create(family_object=family_object, **sheap_data)
+        goat_data = validated_data.pop('goat_names')
+        goat.objects.create(family_object=family_object, **goat_data)
+        return family_object
+        
