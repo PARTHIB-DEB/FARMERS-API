@@ -30,13 +30,13 @@ class family(models.Model):
     Farmer=models.CharField(max_length=100)
     Wife=models.CharField(max_length=100)
     children=models.IntegerField(null=True,blank=True)
-    child_names=models.ForeignKey(child,null=True,blank=True,related_name="child_names",on_delete=models.CASCADE)
+    child_names=models.ForeignKey(child,null=True,blank=True,related_name="name_child",on_delete=models.CASCADE)
     cows=models.IntegerField(null=True,blank=True)
-    cow_names=models.ForeignKey(cow,null=True,blank=True,related_name="cow_names",on_delete=models.CASCADE)
+    cow_names=models.ForeignKey(cow,null=True,blank=True,related_name="name_cow",on_delete=models.CASCADE)
     sheaps=models.IntegerField(null=True,blank=True)
-    sheap_names=models.ForeignKey(sheap,null=True,blank=True,related_name="sheap_names",on_delete=models.CASCADE)
+    sheap_names=models.ForeignKey(sheap,null=True,blank=True,related_name="name_sheap",on_delete=models.CASCADE)
     goats=models.IntegerField(null=True,blank=True)
-    goat_names=models.ForeignKey(goat,null=True,blank=True,related_name="goat_names",on_delete=models.CASCADE)
+    goat_names=models.ForeignKey(goat,null=True,blank=True,related_name="name_goat",on_delete=models.CASCADE)
     
     def __str__(self):
         return self.Farmer
