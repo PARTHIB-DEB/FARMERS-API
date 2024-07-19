@@ -10,7 +10,7 @@ Using the Django Rest framework, I constructed my 2ND API project on the informa
 **Backend(Main framework):** DJANGO
 
 
-**Backend(Microtools):** Django REST
+**Backend(REST Api):** Django REST
 
 ## HOW THE API WORKS
 
