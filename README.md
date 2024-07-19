@@ -14,4 +14,4 @@ Using the Django Rest framework, I constructed my 2ND API project on the informa
 
 ## HOW THE API WORKS
 
-![App Screenshot](https://media.licdn.com/dms/image/D4D22AQEDuxHxiJz4RQ/feedshare-shrink_800/0/1682160384142?e=1695859200&v=beta&t=33LsBkJtcWKd95nb_3rJ-aqINqrg1kyGdhR2qagOw80)
+![App Screenshot](https://media.licdn.com/dms/image/D4D22AQEDuxHxiJz4RQ/feedshare-shrink_2048_1536/0/1682160384157?e=1724284800&v=beta&t=QKlakRd6zkhXZ4BjK5QuimmSqMwMMBYtGtUivG2EzgM)
