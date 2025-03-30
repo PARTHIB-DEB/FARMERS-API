@@ -25,9 +25,6 @@ SECRET_KEY = "django-insecure-=@t%r84326@qpe$&pio#b)#z-!m*1m6jw623eehe--8bty(i%)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','farmers-api.onrender.com']
-
-
 
 
 # Application definition
@@ -77,16 +74,23 @@ WSGI_APPLICATION = "PROJECT.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+
+import dj_database_url
+import os
+
+ALLOWED_HOSTS = ['*'] #Allow all hosts.
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'frm',
-        'USER': 'frm',
-        'PASSWORD': 'frm',
+        'USER': 'username',
+        'PASSWORD': 'password',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }
+
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
